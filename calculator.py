@@ -1,21 +1,30 @@
 import tkinter as tk
 
-clicks = 0
-def click():
-    global clicks
-    clicks += 1
-    print(clicks)
+window = tk.Tk()
+window.title('Calculator')
 
-root = tk.Tk()
+entry = tk.Entry(window,width=50, borderwidth = 10)
+entry.grid(row=0,column=0,columnspan=4)
 
-label = tk.Label(root,text="Hello world")
-label1 = tk.Label(root,text="Hello world")
-label2 = tk.Label(root,text="Hello world")
-label.grid(row=0,column=0)
-label1.grid(row=0,column=1)
-label2.grid(row=1,column=1)
+buttons = [
+    '1','2','3','+',
+    '4','5','6','-',
+    '7','8','9','*',
+    '0','/','=','C'
+]
+row,column = 1, 0
+for button in buttons:
+    if button == '=':
+        tk.Button(window,text=button,padx=40,pady=20,command='').grid(row=row,column=column)
+    elif button == 'C':
+        tk.Button(window,text=button,padx=40,pady=20,command='').grid(row=row,column=column)
+    else:
+        tk.Button(window,text=button,padx=40,pady=20,command='').grid(row=row,column=column)
+    column += 1
+    if column > 3:
+        column = 0
+        row += 1
 
-button = tk.Button(root,text='Click me',command=click)
-button.grid(row=1,column=0)
 
-root.mainloop()
+
+tk.mainloop()
